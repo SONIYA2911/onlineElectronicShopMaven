@@ -1,13 +1,12 @@
 body {
     margin: 0;
     padding: 0;
-    background-color:#3aafa9;
     font-family: sans-serif;
 }
 
 .registerbox {
     width: 350px;
-    height: 750px;
+    height: 720px;
     background: black;
     color:#66fcf1;
     top: 50%;
@@ -30,7 +29,7 @@ h1 {
     margin: 0;
     padding: 0 0 20 px;
     text-align: center;
-    font-size: 30px;
+    font-size: 25px;
 }
 .registerbox p {
     margin: 0;
@@ -40,7 +39,7 @@ h1 {
 
 .registerbox input {
     width: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 28px;
 }
 
 .registerbox input[type="text"],

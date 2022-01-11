@@ -3,14 +3,19 @@
 	<servlet>
 		<description>
 		</description>
-		<display-name>updateComponentServelt</display-name>
-		<servlet-name>updateComponentServelt</servlet-name>
-		<servlet-class>com.onlineelectronicshop.servlet.updateComponentServelt</servlet-class>
+		<display-name>FilterCategoryServlet</display-name>
+		<servlet-name>FilterCategoryServlet</servlet-name>
+		<servlet-class>com.onlineelectronicshop.servlet.FilterCategoryServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>updateComponentServelt</servlet-name>
-		<url-pattern>/updateComponentServelt</url-pattern>
+		<servlet-name>FilterCategoryServlet</servlet-name>
+		<url-pattern>/FilterCategoryServlet</url-pattern>
 	</servlet-mapping>
+	<welcome-file-list>
+    <welcome-file>Home.jsp</welcome-file>   
+</welcome-file-list>
+
 	
+
 </web-app>
 

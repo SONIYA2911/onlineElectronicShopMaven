@@ -3,7 +3,7 @@
   <%@  page import="com.onlineelectronicshop.daoImpl.*"%>
   <%@ page import="com.onlineelectronicshop.model.*"%>
   
-  <%@ page import="com.onlineelectronicshop.model.Cart" %>
+  <%@ page import="com.onlineelectronicshop.model.Order" %>
   <%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
@@ -12,8 +12,18 @@
 <title>cart</title>
 <style>
 table,td,tr{
-border:1px solid black;
+border:1px solid white;
 border-collapse:collapse;
+}
+
+
+body{
+    
+    background-image: url("all home page.jpg");
+    background-repeat:no repeat;
+    background-size: cover;
+   
+    font-family: Cambria;
 }
 <!--<%//CartDaoImpl cartDao=new CartDaoImpl();
 
@@ -22,14 +32,23 @@ border-collapse:collapse;
 %>-->
 <%//int productId=Integer.parseInt(request.getParameter("produId"));%>
 <%//int cartId1=Integer.parseInt(request.getParameter(""));%>
+<%String compantName=request.getParameter("compantName");
+Double price=Double.parseDouble(request.getParameter("price"));
+int compantId=Integer.parseInt(request.getParameter("componentId"));
+%>
 </style>
 </head>
 <body>
-<form action="insertcart" method="post">
-Address Line :<input type="textarea" name="address" required>
+<form action="insertCartServlet" method="post">
+<label style=color:white>ComponentId</label>
+<input type="text" value="<%=compantId%>" name="compantId"><br><br>
+<label style=color:white>ComponentName</label>
+<input type="text" value="<%=compantName %>" name="CompantName"><br><br>
+<lable style=color:white>Price</lable>
+<input type="number" value="<%=price%>" name="price"><br>
 
-Quantity :<input type="text" name="quantity">
 <button type="submit">submit</button>
+<span><a href="Home.jsp">Home</a></span>
 
 </form>
 </body>

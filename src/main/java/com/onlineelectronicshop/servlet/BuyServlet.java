@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.onlineelectronicshop.daoImpl.CartDaoImpl;
+import com.onlineelectronicshop.daoImpl.OrderDaoImpl;
 import com.onlineelectronicshop.daoImpl.UserDaoImpl;
 import com.onlineelectronicshop.daoImpl.WalletDaoImpl;
-import com.onlineelectronicshop.model.Cart;
+import com.onlineelectronicshop.model.Order;
 
 
 
@@ -38,11 +38,11 @@ public class BuyServlet extends HttpServlet {
 		int quantity=Integer.parseInt(request.getParameter("quantity"));	
 		System.out.println(quantity);
 	
-		String userId1=(String)session.getAttribute("userId");
+		int userId=(int)session.getAttribute("userId");
 //		UserDaoImpl userDao=new UserDaoImpl();
 //		int userId=userDao.findUserId(userName);			
 	
-		System.out.println("user id:"+userId1);
+		System.out.println("user id:"+userId);
 		
 		
 		double price1=(double) (session.getAttribute("price"));	
@@ -52,7 +52,6 @@ public class BuyServlet extends HttpServlet {
 		String address=request.getParameter("address");
 		System.out.println(address);
 		WalletDaoImpl walletDao=new WalletDaoImpl();
-		
 		int userWallet=0;
 		
 		System.out.println("userWallet"+userWallet);
@@ -64,22 +63,24 @@ public class BuyServlet extends HttpServlet {
 		 System.out.println("walletbalance"+wallbalance);
 		 
 		 try {
-			 userWallet = walletDao.walletBalance(userId1);
+			 userWallet = walletDao.walletBalance(userId);
 			 System.out.println(userWallet);
+			 if(userWallet> totalPrice) {
 			 double Blanceamount=userWallet - totalPrice;
 			 System.out.println(Blanceamount);
-			walletDao.updateWallet(Blanceamount, userId1);
-			CartDaoImpl cartDao=new CartDaoImpl();			
-			Cart cart=new Cart(comId,userId1,quantity,totalPrice,address);
-			cartDao.insertCart(cart);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
+			walletDao.updateWallet(Blanceamount, userId);
+			OrderDaoImpl orderDao=new OrderDaoImpl();			
+			Order order=new Order(comId,userId,quantity,totalPrice,address);
+			orderDao.insertOrder(order);
+			 
 		response.sendRedirect("OrderSuccess.jsp");
+		 }
+		 else {
+			 response.getWriter().println("low balance");
+		 }
+		 }catch(SQLException e) {
+			 e.printStackTrace();
+		 }
 	}
 
 }

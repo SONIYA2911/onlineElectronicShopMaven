@@ -2,7 +2,7 @@ package com.onlineelectronicshopdao;
 
 import java.util.List;
 
-
+import com.onlineelectronicshop.model.Cart;
 import com.onlineelectronicshop.model.User;
 
 public interface CartDAO {
@@ -13,6 +13,7 @@ public interface CartDAO {
 	public void updateCart(String updateCart);
 	public void deleteCart(String deleteCart);
 	public CartDAO findCart(int cartId);
+	public List<Cart> getCartById(int userId);
 	
 	
 	

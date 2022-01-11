@@ -52,31 +52,43 @@ public class LoginServlet extends HttpServlet {
 		
 		String password=request.getParameter("loginpassword");
 		UserDaoImpl userDaoImpl=new UserDaoImpl();
+		int userId=userDaoImpl.findUserId(emailid);
+		session.setAttribute("userId", userId);
 		
+		
+		
+		System.out.println(userId);
 //		
-		System.out.println("hello"+emailid+password);
+		//System.out.println("hello"+emailid+password);
 		User Currentuser=userDaoImpl.validateUser(emailid,password);
-		if(Currentuser!=null) {
-
+		System.out.println(Currentuser);
 		
-			session.setAttribute("CurrentUser",Currentuser);
-			session.setAttribute("userId", Currentuser.getEmailId());
+		String userName=Currentuser.getUserName();
+		session.setAttribute("userName", userName);
+	
+		session.setAttribute("CurentUser", Currentuser);
+	
+		System.out.println(Currentuser.getRole());
+		if(Currentuser.getRole().equals("user")) {
+
+		   
+			//session.setAttribute("CurrentUser",Currentuser);
+			//session.setAttribute("userId", Currentuser.getEmailId());
 //			doGet(request, response);
-			pw.write(Currentuser.getUserName());
-     		pw.write("welcome");
-     		response.sendRedirect("showproduct.jsp");
-			
+		//	pw.write(Currentuser.getUserName());
+     	//	pw.write("welcome");
+     		response.sendRedirect("showComponents.jsp");
 		}
-			else {
+
+		else if(Currentuser.getRole().equals("admin")){
+			
 				response.sendRedirect("admin.jsp");
 				pw.write("welcome admin");
-				}
-			
-				
-			
-		
-		
-
+				}	
+		else
+		{
+			pw.write("page not found");
+		}
 	}
 
 }

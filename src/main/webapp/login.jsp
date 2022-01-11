@@ -5,12 +5,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>login</title>
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
+
+
 </head>
 <body>
 <form action="LoginServlet" class="form" method="post">
         <div class="loginbox">
-        <img src="avatar.png" class="avatar">
         <h1>Login Here</h1>
         <form>
             <p>Email</p>

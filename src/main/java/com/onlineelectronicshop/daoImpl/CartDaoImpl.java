@@ -10,112 +10,125 @@ import java.util.List;
 
 import com.onlineelectronicshop.model.Cart;
 import com.onlineelectronicshop.model.Components;
-import com.onlineelectronicshop.model.User;
+import com.onlineelectronicshop.model.Order;
 import com.onlineelectronicshop.util.ConnectionUtil;
+import com.onlineelectronicshopdao.CartDAO;
 
 public class CartDaoImpl {
-	//insert cart
-public void  insertCart(Cart cart) throws SQLException {
-	ComponentDaoImpl comDao=new ComponentDaoImpl(); 
-	UserDaoImpl userDaoImpl=new UserDaoImpl();
-	String insertQuery = "insert into orders_table (user_id,component_id,quantity,total_price,address) values(?,?,?,?,?)";
-Connection con=ConnectionUtil.getDbConnection();
-PreparedStatement pstmt=null;
-try {
-pstmt=con.prepareStatement(insertQuery);
-
-pstmt.setString(1, cart.getUserId());
-pstmt.setInt(2, cart.getComponentId());
-pstmt.setInt(3, cart.getQuantity());
-pstmt.setDouble(4,cart.getTotalPrice());
-pstmt.setString(5, cart.getAddress());
- pstmt.executeUpdate();
-System.out.println("value inserted successfully");
-}catch(SQLException e) {
-	e.printStackTrace();
-}
-
-
-}
-//view cart
-public List<Cart> viewCart(User currentUser) {
-	List<Cart> userCartList = new ArrayList<Cart>();
-	String query = "select * from order_items";
-	Connection con = ConnectionUtil.getDbConnection();	
-	ComponentDaoImpl comDao = new ComponentDaoImpl();		
-	try {
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery(query);
-		while (rs.next()) {				
-			
-		//    userCartList.add(new Cart(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getDouble(5)));
-	   
-		}
+	public void insertCart(Cart cart) {
+		String insertQuery="insert into cart(user_id,component_id)values(?,?)";
+		Connection con=ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt=null;
+		try {
+		pstmt=con.prepareStatement(insertQuery);
 		
-	} catch (Exception e) {
-		System.out.println(e.getMessage());
-	}
-	return userCartList;
-}
-public static void updateCart(String updateCart) throws ClassNotFoundException, SQLException {
-	String updateQuery = "update order_items set quantity =? where item_id=?";
-
-	Connection con = ConnectionUtil.getDbConnection();
-	PreparedStatement pstmt = con.prepareStatement(updateQuery);
-	pstmt.setInt(1, Integer.parseInt(updateCart.split(",")[0]));
-	pstmt.setInt(2, Integer.parseInt(updateCart.split(",")[1]));
-	int i = pstmt.executeUpdate();
-	System.out.println(i + "row updated");
-	pstmt.close();
-	con.close();
-}
-
-// delete cart
-
-public static void deleteCart(String deleteCart)  {
-	String deleteQuery = "delete from order_items where item_id=?";
-
-	Connection con = ConnectionUtil.getDbConnection();
-	PreparedStatement pstmt;
-	try {
-		pstmt = con.prepareStatement(deleteQuery);
-		pstmt.setInt(1, Integer.parseInt(deleteCart));
-		int i = pstmt.executeUpdate();
-		System.out.println(i + "row deleted");
-		pstmt.close();
-		con.close();
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
+		pstmt.setInt(1, cart.getUserId());
+		pstmt.setInt(2, cart.getComponentId());
+		pstmt.executeUpdate();
+		
+		System.out.println("value inserted successfully");
+	}catch(SQLException e) {
 		e.printStackTrace();
-	}}
+	}
 
-	public static Cart findCart(int cartId) {
-		String query = "select * from order_items where item_id=?";
+
+}
+	
+	public static void updateCart(String updateCart) throws ClassNotFoundException, SQLException {
+		String updateQuery = "update cart set quantity =? where item_id=?";
 
 		Connection con = ConnectionUtil.getDbConnection();
-		Cart cart = null;
+		PreparedStatement pstmt = con.prepareStatement(updateQuery);
+		pstmt.setInt(1, Integer.parseInt(updateCart.split(",")[0]));
+		pstmt.setInt(2, Integer.parseInt(updateCart.split(",")[1]));
+		int i = pstmt.executeUpdate();
+		System.out.println(i + "row updated");
+		pstmt.close();
+		con.close();
+	}
+
+	// delete cart
+
+	public void deleteCart(String deleteCart)  {
+		String deleteQuery = "delete from cart where user_id=?";
+
+		Connection con = ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt;
 		try {
-			PreparedStatement pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, cartId);
-
-			ResultSet rs = pstmt.executeQuery(query);
-
-			if (rs.next()) {
-			 //cart=new Cart(rs.getInt(0),rs.getInt(1),rs.getInt(2),rs.getDouble(3));
-			}
-
+			pstmt = con.prepareStatement(deleteQuery);
+			pstmt.setInt(1, Integer.parseInt(deleteCart));
+			int i = pstmt.executeUpdate();
+			System.out.println(i + "row deleted");
+			pstmt.close();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}}
+
+		public static Order findCart(int cartId) {
+			String query = "select * from order_items where item_id=?";
+
+			Connection con = ConnectionUtil.getDbConnection();
+			Order order = null;
+			try {
+				PreparedStatement pstmt = con.prepareStatement(query);
+				pstmt.setInt(1, cartId);
+
+				ResultSet rs = pstmt.executeQuery(query);
+
+				if (rs.next()) {
+				 //cart=new Cart(rs.getInt(0),rs.getInt(1),rs.getInt(2),rs.getDouble(3));
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			return order;
+
+		
+	}
+		
+		public List<Components> fetchCart(int userId){
+			List<Components> componentsList=new ArrayList<Components>();
+			String query="select component_name,category_name,description,total_price,status from component_info where component_id in (select component_id from cart where user_id in ?)";
+		    Connection con=ConnectionUtil.getDbConnection();
+		    try {
+		    	PreparedStatement pstmt=con.prepareStatement(query);
+		    	pstmt.setInt(1, userId);
+		    	ResultSet rs=pstmt.executeQuery();
+		    	
+		    	while(rs.next()) {
+		    		componentsList.add(new Components(rs.getString(1),rs.getString(2),rs.getString(3),rs.getDouble(4),rs.getString(5)));
+		    	}}
+		    	catch(SQLException e) {
+		    		e.printStackTrace();
+		    		
+		    	}
+		    	return componentsList;
+		    }
+
+		public List<Cart> allCart(){
+			List<Cart> cartList=new ArrayList<Cart>();
+			String cart="select * from cart";
+			Connection con=ConnectionUtil.getDbConnection();
+			
+			try {
+				Statement stmt=con.createStatement();
+				ResultSet rs=stmt.executeQuery(cart);
+				while(rs.next()) {
+					Cart cart1=new Cart(rs.getInt(2),rs.getInt(3));
+					cartList.add(cart1);
+				}}
+				 catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return cartList;
+		
+}
+		
+		
 		}
-
-		return cart;
-
-	
-}
-	
-
-
-
-
-}

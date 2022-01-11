@@ -3,32 +3,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Home page</title>
-<link rel="stylesheet" href="style2.css">
 <style>
+{
+    padding:0;
+    margin:0;
+    
+}
 body{
-   background-image: url(image/new.jpeg);
+    
+    background-image: url("home background.jpg");
+    background-repeat:no repeat;
+    background-size: cover;
    
+    font-family: Cambria;
+}
+.menu-bar{
+    background:#5ab9ea;
+    text-align: center;
+}
+.menu-bar ul{
+    display:inline-flex;
+    list-style: none;
+    color: #fff;
+}
+.menu-bar ul li
+{
+width: 150px;
+margin: 8px;
+padding: 1px;
+}
+.menu-bar ul li a{
+padding: 10px 10px;
+font-size: 17px;
+ text-decoration:none;
+}
+
+.button
+{
+    background-color: rgba(218, 19, 19, 0.555);
+    text-decoration: none;
+    display: -moz-inline-box;
+    padding: 5px 5px;
+    
 }
 </style>
+<meta charset="ISO-8859-1">
+<title>Home page</title>
+ 
 </head>
 <body>
+<center>
+<h3 style=color:white>Online electronic shop</h3>
+</center>
 <nav>
 <div class="menu-bar">
         <ul>
-            <li class="active">Home</a></li>
-            <li>All categories </li>
-            <li>Search</li>
-            <li><a href="showproduct.jsp">Components</li></a>
-            <li><a href="index.jsp">Register</li></a>
-            <li><a href="login.jsp">Login</li></a>
-            <li><a href="Order.jsp">Orders</li></a>
-            
-            
+            <li class="active">Home</li>
+            <li class="example"><input type="text" placeholder="Search.." name="search"></li>
+            <li><button type="submit"><i class="fa fa-search"></i></li>
+            <li><a href="viewComponent.jsp">Components</a></li>
+            <li><a href="index.jsp">Register</a></li>
+            <li><a href="login.jsp">Login</a></li>
+            <li><a href="MyOrders.jsp">Myorders</a>
+            <li><a href="showComponents.jsp"><i class="fas fa-shopping-cart">Cart</i></a></li>
+                  
     </ul>
     </div>
     <br>
     </nav>
-</body>
+    <p style=color:white>Here's a list of all components in stock,followed by a quick guide to buying new electronic components.</p>
 </html>

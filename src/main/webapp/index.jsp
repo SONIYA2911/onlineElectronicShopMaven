@@ -15,11 +15,11 @@
         <h1>Register Here</h1>
         <div class="input-group">
             <label for="registername">User Name</label>
-            <input type="text" name="registername" id="registername" placeholder="your name" required>
+            <input type="text" name="registername" id="registername" placeholder="your name"  pattern="[A-Z][a-z]{3,}"required>
         </div>
         <div class="input-group">
             <label for="registeremail">Email</label>
-            <input type="text" name="registeremail" id="registeremail" placeholder="abc@gmail.com" required>
+            <input type="text" name="registeremail" id="registeremail" placeholder="abc@gmail.com" pattern="[a-z0-9]+[@][a-z]+[.]+[a-z]+{8,15}" required>
             </div>
         <div class="input-group">
             <label for="registerpassword">Password</label>
@@ -27,7 +27,7 @@
         </div>
         <div class="input-group">
             <label for="registercontactnumber">Contact Number</label>
-            <input type="number" name="registercontactnumber" id="registercontactnumber" required>
+            <input type="text" name="registercontactnumber" id="registercontactnumber" pattern="[0-9]{10}"required>
             </div>
             <div class="input-group">
                 <label for="registeraddress">Address</label>

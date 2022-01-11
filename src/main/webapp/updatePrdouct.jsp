@@ -14,6 +14,15 @@ table,td,tr{
 border:1px solid black;
 border-collapse:collapse;
 }
+
+body{
+    
+    background-image: url("all home page.jpg");
+    background-repeat:no repeat;
+    background-size: cover;
+   
+    font-family: Cambria;
+}
 </style>
 </head>
 <body>

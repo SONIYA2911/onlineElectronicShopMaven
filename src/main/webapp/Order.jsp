@@ -1,3 +1,4 @@
+<%@page import="com.onlineelectronicshop.model.Order"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -10,23 +11,25 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Buy Component</title>
 </head>
 <body>
+<h1>Buy</h1>
 <%double price=(double)(session.getAttribute("price")); %>
-<%String userId=(String)(session.getAttribute("userId")); %>
+<%int userId=(int)session.getAttribute("userId"); %>
 <%ComponentDaoImpl comDao=new ComponentDaoImpl();
-
+Order order=new Order();
 String componentName=request.getParameter("componentName");
 session.setAttribute("ComponentName", componentName);
-//int comId=comDao.findComponentId(componentName);
+int comId=comDao.findComponentId(componentName);
 %>
 
-<form action="BuyServlet" method="post">
-<label>Address</label>
-<input id="address" name="address" >Address
-<label>quantity</label>
-<input type="number" name="quantity">
+<form action="BuyServlet" method="post"><br>
+
+<label>Address</label><br>
+<input id="address" name="address" ><br>
+<label>quantity</label><br>
+<input type="number" name="quantity"><br>
 <button type="submit">order</button>
 </form>
 </body>

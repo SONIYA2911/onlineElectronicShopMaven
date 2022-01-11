@@ -8,7 +8,7 @@ public class Invoice {
 
 	private Components component;
 	private User user;
-	private Cart cart;
+	private Order order;
 	private Date orderDate;
 	public Components getComponent() {
 		return component;
@@ -22,11 +22,11 @@ public class Invoice {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public Cart getCart() {
-		return cart;
+	public Order getCart() {
+		return order;
 	}
-	public void setCart(Cart cart) {
-		this.cart = cart;
+	public void setCart(Order order) {
+		this.order = order;
 	}
 	
 	public Date getOrderDate() {
@@ -35,16 +35,16 @@ public class Invoice {
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
-	public Invoice(Components component, User user, Cart cart, Date orderDate) {
+	public Invoice(Components component, User user, Order order, Date orderDate) {
 		super();
 		this.component = component;
 		this.user = user;
-		this.cart = cart;
+		this.order = order;
 		this.orderDate = orderDate;
 	}
 	@Override
 	public String toString() {
-		return "Invoice [component=" + component + ", user=" + user + ", cart=" + cart + 
+		return "Invoice [component=" + component + ", user=" + user + ", cart=" + order + 
 				 ", orderDate=" + orderDate + "]";
 	}
 	public Invoice() {

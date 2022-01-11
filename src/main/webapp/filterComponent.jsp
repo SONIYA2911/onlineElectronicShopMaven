@@ -16,7 +16,7 @@ border-collapse:collapse;
 </style>
 </head>
 <body>
-<form action="showproduct.jsp">
+<form action="filerCategory.jsp">
 <table>
 <tr>
 <td>S.no</td>
@@ -25,9 +25,15 @@ border-collapse:collapse;
 </tr>
 <%ComponentDaoImpl comDao=new ComponentDaoImpl();	
 List<Components> componentList=comDao.showComponent();
+
+%>
 for(int i=0;i<componentList.size();i++){
-	
+	Components comDao1=componentList.get(i);
+	String componentName=(String)session.getAttribute("componentName");
+	String categoryName=(String)session.getAttribute("Category");
 }
 %>
+
+
 </body>
 </html>
