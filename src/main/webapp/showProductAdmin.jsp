@@ -18,7 +18,7 @@ border-collapse:collapse;
 
 body{
     
-    background-image: url("all home page.jpg");
+    background-image: url("electronic new.jpg");
     background-repeat:no repeat;
     background-size: cover;
    
@@ -30,11 +30,11 @@ body{
 
 <table>
 <tr>
-<td style=color:white>ComponentName</td>
-<td style=color:white>CategoryName</td>
-<td style=color:white>Description</td>
-<td style=color:white>TotalPrice</td>
-<td style=color:white>Action</td>
+<td>ComponentName</td>
+<td>CategoryName</td>
+<td>Description</td>
+<td>TotalPrice</td>
+<td>Action</td>
 </tr>
 <%ComponentDaoImpl comDao=new ComponentDaoImpl();	
 UserDaoImpl userDaoImpl=new UserDaoImpl();
@@ -46,23 +46,28 @@ Components comDao1=componentList.get(i);
 session.setAttribute("componentName" ,comDao1.getComponentName());
 session.setAttribute("price",comDao1.getPrice()); %>
 <tr>
-<td style=color:white><%=comDao1.getComponentName()%></td>
-<td style=color:white><%=comDao1.getCategoryName()%></td>
-<td style=color:white><%=comDao1.getDescription() %></td>
-<td style=color:white><%=comDao1.getPrice() %></td>
-<td style=color:white><%=comDao1.getAvailable() %></td>
-<td style=color:white>
+<td><%=comDao1.getComponentName()%></td>
+<td><%=comDao1.getCategoryName()%></td>
+<td><%=comDao1.getDescription() %></td>
+<td><%=comDao1.getPrice() %></td>
+<td><%=comDao1.getAvailable() %></td>
+<td>
 <form action="updateComponentServelt" method="post">
 
-<lable style=color:white>ComponentName:</lable>
+<lable>ComponentName:</lable>
 <input type="text" name="componentName" value="<%=comDao1.getComponentName()%>"></br>
 
-<label style=color:white>Enter Price</label><br>
+<label>Enter Price</label><br>
 <input type="text" name="price" id="price" min="0">
 <button type="submit">submit</button>
-<button type="submit">delete</button>
-</form></td>
+</form>
 
+<form action="DeleteProductServlet" method="post">
+<input type="text" name="componentName" value="<%=comDao1.getComponentName()%>" style="visibility: hidden"></br>
+
+<button type="submit" value="<%=comDao1.getComponentId()%>">Change Status</button>
+</form>
+</td>
 </tr>
 <%} %>
 </table>

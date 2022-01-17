@@ -33,7 +33,7 @@ margin: 8px;
 padding: 1px;
 }
 .menu-bar ul li a{
-padding: 10px 10px;
+padding: 8px 8px;
 font-size: 17px;
  text-decoration:none;
 }
@@ -59,13 +59,10 @@ font-size: 17px;
 <div class="menu-bar">
         <ul>
             <li class="active">Home</li>
-            <li class="example"><input type="text" placeholder="Search.." name="search"></li>
-            <li><button type="submit"><i class="fa fa-search"></i></li>
-            <li><a href="viewComponent.jsp">Components</a></li>
             <li><a href="index.jsp">Register</a></li>
             <li><a href="login.jsp">Login</a></li>
-            <li><a href="MyOrders.jsp">Myorders</a>
-            <li><a href="showComponents.jsp"><i class="fas fa-shopping-cart">Cart</i></a></li>
+            <li><a href="contactUs.jsp">Contact Us</a>
+            
                   
     </ul>
     </div>

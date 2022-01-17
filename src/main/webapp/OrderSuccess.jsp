@@ -9,7 +9,7 @@
 
 body{
     
-    background-image: url("all home page.jpg");
+    background-image: url("electronic new.jpg");
     background-repeat:no repeat;
     background-size: cover;
    
@@ -22,10 +22,10 @@ body{
 <form action="MyOrders.jsp">
 
 
-<center><h1 style=color:white>Order success! Thank You!!</h1>
-<h2 style=color:white><i>Your Payment Is Debited from Your Wallet</i></h2>
-<button type="submit">click to check order</button>
-<span><a href="insertCart.jsp">Add to cart</a></span>
+<center><h1>Order success! Thank You!!</h1>
+<h2><i>Your Payment Is Debited from Your Wallet</i></h2>
+<button type="submit">click to check order</button><br>
+<span><a href="viewHomePage.jsp">home</a></span>
 
 
 <%double totalprice=(double) session.getAttribute("totalprice");%>

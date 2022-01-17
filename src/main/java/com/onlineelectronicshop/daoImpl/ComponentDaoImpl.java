@@ -56,6 +56,26 @@ public void insertCmponent(Components component) {
 				}
 				
 		
+		public List<Components> showComponent(String search){
+			List<Components> componentsList=new ArrayList<Components>();
+			
+				try {
+				String showQuery="select*from component_info where component_name like '%"+search+"%' or category_name like '%"+search+"%'";
+				Connection con=ConnectionUtil.getDbConnection();
+			    Statement stmt=con.createStatement();
+			    ResultSet rs=stmt.executeQuery(showQuery);
+			    while(rs.next()) {
+			    	Components component=new Components(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6),rs.getString(7));
+			    	componentsList.add(component);                         
+			    }
+			    return componentsList;			                          
+			    }catch(SQLException e) {	
+			    			e.printStackTrace();
+			    }
+				return componentsList;
+				}
+				
+		
 		public  int findComponentId(String ComponentName)
 		{
 			String query="select component_id from component_info where component_name='"+ComponentName+"'";
@@ -123,13 +143,14 @@ public void insertCmponent(Components component) {
 			pstmt.close();
 			con.close();
 		}
-		public void updateAvailable(String available) {
-			String updateQuery="update component_info set available='Not available' where componentName=?";
+		public void updateAvailable(String ComponetName) {
+			String updateQuery="update component_info set status='not available' where component_name=?";
 		Connection con=ConnectionUtil.getDbConnection();
 			PreparedStatement pstmt;
 			try {
 				pstmt = con.prepareStatement(updateQuery);
-				pstmt.setString(1, available);
+				pstmt.setString(1, ComponetName);
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -177,9 +198,9 @@ public void insertCmponent(Components component) {
 //		
 		
 		
-		public List<Components> findCategory(String categoryName) {
+		public List<Components> findCategory() {
 			 List<Components> componentsList=new ArrayList<Components>();
-			 String query="select * from component_info where category_name='"+categoryName+"'";
+			 String query="select * from component_info";
 			 Connection con=ConnectionUtil.getDbConnection();
 			 Components component=null;
 		 	        Statement stmt;
@@ -200,7 +221,6 @@ public void insertCmponent(Components component) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-		 	
 			return componentsList ;
 		 }		
 

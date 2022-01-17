@@ -12,11 +12,8 @@
 <body>
 <form action>
 <table>
+
 </table>
-
-
-
-
 </form>
 </body>
 </html>

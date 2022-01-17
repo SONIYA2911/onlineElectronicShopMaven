@@ -45,7 +45,7 @@ public ResultSet showOrder(int userId){
 	Connection con=ConnectionUtil.getDbConnection(); 
 	List<Order> orderList=new ArrayList<Order>();
 	
-	String query="select* from orders_table where user_id='"+userId+"'";
+	String query="select* from orders_table where order_status='Not delivered' and user_id='"+userId+"'order by order_date desc";
 	try {
 		Statement stmt=con.createStatement();
 		ResultSet rs=stmt.executeQuery(query);
@@ -63,9 +63,6 @@ public ResultSet showOrder(int userId){
 	}
 	
 	return null;
-	
-
-	
 	
 }
 
@@ -85,11 +82,31 @@ public LocalDate findOrderDate(int userId) {
 
 			e.printStackTrace();
 		}
-		
 	 return orderDate;
 	 
 }
+
+public boolean updateStatus(int orderid){
+	Connection con=ConnectionUtil.getDbConnection(); 
 	
+	String query="update orders_table set order_status='cancel' where order_id=?";
+	
+       
+	boolean flag=false;
+    try {
+		PreparedStatement pstmt = con.prepareStatement(query);
+		pstmt.setInt(1, orderid);
+		flag=pstmt.executeUpdate()>0;
+		} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return flag;
+	
+}
+
+
+
 
 
 

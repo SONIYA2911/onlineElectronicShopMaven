@@ -9,7 +9,7 @@
 
 body{
     
-    background-image: url("all home page.jpg");
+    background-image: url("electronic new.jpg");
     background-repeat:no repeat;
     background-size: cover;
    
@@ -20,23 +20,23 @@ body{
 </style>
 </head>
 <body>
-<h1 style=color:white>Admin Page</h1>
+<h1>Admin Page</h1>
 <form action="showUser.jsp">
-<label style=color:white>List of users</label><br>
+<label>List of users</label><br>
 <button type="submit">Show all users</button>
 </form>
 <br>
 <form action="viewComponent.jsp">
-<label style=color:white>Show Components</label><br>
+<label>Show Components</label><br>
 <button type="submit">Show all components</button>
 
 </form>
 <br>
 <form action="showProductAdmin.jsp">
-<label style=color:white>Update Product</label><br>
+<label>Update Product</label><br>
 <button type="submit">click to update</button>
 </form><br>
-<lable style=color:white><h3>Add new Product</h3></lable>
+<lable><h3>Add new Product</h3></lable>
 <form action="insertComponent.jsp">
 <select name="category name" id="category name">
   <option value="Microcontroller">Micro controller</option>
@@ -54,10 +54,15 @@ body{
 <button type="submit">click</button><br>
 </form>
 <form action="DeleteProductServlet">
-<label style=color:white>Enter productId:</label><br>
+<label>Enter componentName:</label><br>
 <input type="text" name="componentId"><br>
 <button type="submit">delete</button> 
-</form>
+<br>
 
+
+<a href="Home.jsp">Home</a>
+
+
+</form>
 </body>
 </html>

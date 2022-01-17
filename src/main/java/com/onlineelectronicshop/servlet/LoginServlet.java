@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.onlineelectronicshop.daoImpl.UserDaoImpl;
+import com.onlineelectronicshop.exception.FoundException;
 import com.onlineelectronicshop.model.User;
 import com.onlineelectronicshop.util.ConnectionUtil;
 @WebServlet("/LoginServlet")
@@ -61,34 +62,40 @@ public class LoginServlet extends HttpServlet {
 //		
 		//System.out.println("hello"+emailid+password);
 		User Currentuser=userDaoImpl.validateUser(emailid,password);
-		System.out.println(Currentuser);
+		System.out.println(Currentuser.getUserid()+"userid");
 		
 		String userName=Currentuser.getUserName();
 		session.setAttribute("userName", userName);
 	
 		session.setAttribute("CurentUser", Currentuser);
+		System.out.println(Currentuser.getWallet()+"Second Amount");
 	
-		System.out.println(Currentuser.getRole());
+		System.out.println(Currentuser.getRole()+"Second role");
+	//	try {
 		if(Currentuser.getRole().equals("user")) {
 
 		   
-			//session.setAttribute("CurrentUser",Currentuser);
-			//session.setAttribute("userId", Currentuser.getEmailId());
-//			doGet(request, response);
+			session.setAttribute("CurrentUser",Currentuser);
+			session.setAttribute("userId", Currentuser.getUserid());
+			//doGet(request, response);
 		//	pw.write(Currentuser.getUserName());
      	//	pw.write("welcome");
-     		response.sendRedirect("showComponents.jsp");
+     		response.sendRedirect("viewHomePage.jsp");
 		}
 
 		else if(Currentuser.getRole().equals("admin")){
-			
 				response.sendRedirect("admin.jsp");
 				pw.write("welcome admin");
 				}	
-		else
-		{
-			pw.write("page not found");
-		}
+//		else
+//		{
+//		 throw new  FoundException();
+//		}
+//		}catch(FoundException e)
+//		{
+//			session.setAttribute("invalid", e.getMessage());
+//			response.sendRedirect("login.jsp");
+//		}
 	}
 
 }

@@ -47,26 +47,32 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		int compid=(int) session.getAttribute("compID");
 		System.out.println(compid);
 		
-		int quantity=Integer.parseInt(request.getParameter("quantity"));	
+		int quantity=Integer.parseInt(request.getParameter("quantity"));
+		session.setAttribute("quantity", quantity);
 		System.out.println(quantity);
 		
 		String address=request.getParameter("address");
 		System.out.println(address);
 		
-		double price1=(double) (session.getAttribute("price"));	
+		
+		//System.out.println(request.getParameter("price"));
+		
+		double price1=Double.parseDouble(request.getParameter("price"));	
 		System.out.println(price1);
 		double totalPrice=(price1 * quantity);
 		
+		
+		
+		
 		WalletDaoImpl walletDao=new WalletDaoImpl();
 		int userWallet=0;
-		
-		System.out.println("userWallet"+userWallet);
+				System.out.println("userWallet"+userWallet);
 		 double wallbalance=userWallet-totalPrice;
 		 
-		 System.out.println("price"+price1);
-		 System.out.println("totalprice"+totalPrice);
-		 
-		 System.out.println("walletbalance"+wallbalance);
+//		 System.out.println("price"+price1);
+//		 System.out.println("totalprice"+totalPrice);
+//		 
+//		 System.out.println("walletbalance"+wallbalance);
 		 try {
 		 userWallet = walletDao.walletBalance(userId);
 		 System.out.println(userWallet);
@@ -76,12 +82,10 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		 
 		 session.setAttribute("wallbal",Blanceamount);
 		 session.setAttribute("totalprice", totalPrice);
-		 
 		walletDao.updateWallet(Blanceamount, userId);
 		OrderDaoImpl orderDao=new OrderDaoImpl();			
 		Order order=new Order(compid,userId,quantity,totalPrice,address);
-		orderDao.insertOrder(order);
-		 
+		orderDao.insertOrder(order);		 
 	response.sendRedirect("OrderSuccess.jsp");
 	 }
 	 else {

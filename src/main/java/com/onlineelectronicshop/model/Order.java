@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Order {
-
+    private int orderid;
 	private int componentId;
 	private int userId;
 	private int quantity;
@@ -13,6 +13,13 @@ public class Order {
 	private String address;
 	private LocalDate orderDate;
 	
+	
+	public int getOrderid() {
+		return orderid;
+	}
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
+	}
 	public LocalDate getOrderDate() {
 		return orderDate;
 	}
@@ -69,6 +76,18 @@ public class Order {
 		this.quantity = quantity;
 		this.totalPrice = totalPrice;
 		this.address = address;
+	}
+	
+	public Order(int orderid, int componentId, int userId, int quantity, double totalPrice, String address,
+			LocalDate orderDate) {
+		super();
+		this.orderid = orderid;
+		this.componentId = componentId;
+		this.userId = userId;
+		this.quantity = quantity;
+		this.totalPrice = totalPrice;
+		this.address = address;
+		this.orderDate = orderDate;
 	}
 	public Order() {
 		super();

@@ -50,8 +50,9 @@ public class UserDaoImpl {
 			ResultSet rs = st.executeQuery(validateQuery);
 			if (rs.next()) {
 				 System.out.println("sdsafsf");
-				user = new User(rs.getString(2),emailId, password, Long.parseLong(rs.getString(5)),
-						rs.getString(6),rs.getString(7));
+				 System.out.println(rs.getString(7)+"role");
+				 System.out.println(rs.getDouble(8)+"Amounts");
+				user = new User(rs.getInt(1),rs.getString(2),emailId, password, rs.getLong(5),rs.getString(6),rs.getString(7),rs.getDouble(8));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -61,27 +62,7 @@ public class UserDaoImpl {
 		return user;
 
 	}
-	public static User validateAdmin(String emailId, String password) {
-		String validateQuery ="select * from user_details where role='admin' and email_id='"+emailId+"' and password='"+password+"'";
-				
-		Connection con = ConnectionUtil.getDbConnection();
-		User user = null; 
-
-		try {
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(validateQuery);
-			if (rs.next()) {
-				user = new User(rs.getString(2),emailId, password, Long.parseLong(rs.getString(5)),
-						rs.getString(6),rs.getNString(7));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("Statement error");
-		}
-		return user;
-
-	}
+	
 
 	public void update(String update) {
 		String updatequery = "update user_details set password=? where email_id=?";
@@ -154,7 +135,7 @@ public class UserDaoImpl {
 			while (rs.next()) {
 
 				UsersList.add(
-						new User(rs.getString(2), rs.getString(3), rs.getString(4), rs.getLong(5), rs.getString(6)));
+						new User(rs.getString(2), rs.getString(3), rs.getString(4), rs.getLong(5), rs.getString(6),rs.getString(7),rs.getDouble(8)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -196,7 +177,7 @@ public class UserDaoImpl {
 			
 			ResultSet rs = pstm.executeQuery();
 			while(rs.next()) {
-				User user=new User(rs.getString(1),rs.getString(2),rs.getString(3),rs.getLong(4),rs.getString(5));
+				User user=new User(rs.getString(1),rs.getString(2),rs.getString(3),rs.getLong(4),rs.getString(5),rs.getString(6),rs.getInt(8));
 				UsersList.add(user);
 			}
 	}catch(Exception e) {
@@ -205,4 +186,13 @@ public class UserDaoImpl {
 	
 return UsersList;
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

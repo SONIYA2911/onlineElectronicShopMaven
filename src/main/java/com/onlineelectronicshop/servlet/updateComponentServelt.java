@@ -38,4 +38,6 @@ public class updateComponentServelt extends HttpServlet {
 		}
 	
 	}
+	
+
 }

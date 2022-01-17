@@ -10,6 +10,11 @@
 
 </head>
 <body>
+<%-- <%String error=(String)session.getAttribute("invalid");
+if(error!=null){
+%>
+<h1><%=error %></h1>
+<%} %> --%>
 <form action="LoginServlet" class="form" method="post">
         <div class="loginbox">
         <h1>Login Here</h1>

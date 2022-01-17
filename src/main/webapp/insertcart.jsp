@@ -19,7 +19,7 @@ border-collapse:collapse;
 
 body{
     
-    background-image: url("all home page.jpg");
+    background-image: url("electronic new.jpg");
     background-repeat:no repeat;
     background-size: cover;
    
@@ -35,16 +35,17 @@ body{
 <%String compantName=request.getParameter("compantName");
 Double price=Double.parseDouble(request.getParameter("price"));
 int compantId=Integer.parseInt(request.getParameter("componentId"));
+session.setAttribute("price", price);
 %>
 </style>
 </head>
 <body>
 <form action="insertCartServlet" method="post">
-<label style=color:white>ComponentId</label>
+<label>ComponentId</label>
 <input type="text" value="<%=compantId%>" name="compantId"><br><br>
-<label style=color:white>ComponentName</label>
+<label>ComponentName</label>
 <input type="text" value="<%=compantName %>" name="CompantName"><br><br>
-<lable style=color:white>Price</lable>
+<lable>Price</lable>
 <input type="number" value="<%=price%>" name="price"><br>
 
 <button type="submit">submit</button>

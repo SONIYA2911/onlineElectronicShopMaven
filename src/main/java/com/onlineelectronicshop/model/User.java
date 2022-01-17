@@ -1,15 +1,23 @@
 package com.onlineelectronicshop.model;
 
 import java.util.Objects;
-
 public class User {
+	private int userid;
 	private String userName;
 	private String emailId;
 	private String password;
 	private Long contactNumber;
 	private String address;
 	private String role;
+	private double wallet;
 	
+	
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
 	public String getUserName() {
 		return userName;
 	}
@@ -48,6 +56,12 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public double getWallet() {
+		return wallet;
+	}
+	public void setWallet(double wallet) {
+		this.wallet = wallet;
+	}
 	public User(String userName, String emailId, String password, Long contactNumber, String address) {
 		super();
 		this.userName = userName;
@@ -56,8 +70,9 @@ public class User {
 		this.contactNumber = contactNumber;
 		this.address = address;
 	}
-	public User(String userName, String emailId, String password, Long contactNumber, String address,String role) {
+	public User(int userid,String userName, String emailId, String password, Long contactNumber, String address,String role) {
 		super();
+		this.userid=userid;
 		this.userName = userName;
 		this.emailId = emailId;
 		this.password = password;
@@ -65,9 +80,37 @@ public class User {
 		this.address = address;
 		this.role=role;
 	}
+	
+	public User(String userName, String emailId, String password, Long contactNumber, String address,String role,double wallet) {
+		super();
+		this.userid=userid;
+		this.userName = userName;
+		this.emailId = emailId;
+		this.password = password;
+		this.contactNumber = contactNumber;
+		this.address = address;
+		this.role=role;
+		this.wallet=wallet;
+	}
+	
+	
+	
+	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public User(int int1, String string, String emailId2, String password2, long long1, String string2, String string3,
+			double double1) {
+		this.userid=int1;
+		this.userName=string;
+		this.emailId=emailId2;
+		this.password=password2;
+		this.contactNumber=long1;
+		this.address=string2;
+		this.role=string3;
+		this.wallet=double1;
 	}
 	@Override
 	public String toString() {

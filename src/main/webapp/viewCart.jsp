@@ -15,7 +15,7 @@
 
 body{
     
-    background-image: url("all home page.jpg");
+    background-image: url("electronic new.jpg");
     background-repeat:no repeat;
     background-size: cover;
    
@@ -48,7 +48,7 @@ for(Components component:componentsList){
 <input type="number" name="componentId" value="<%=compid %>">
 <br><br>
 <lable style=color:white>Enter quantity</lable>
-<input type="number" name="quantity" min="1">
+<input type="number" name="quantity" min="1" required>
 <br>
 
 <input type="number" name="price" value="<%=component.getPrice() %>">

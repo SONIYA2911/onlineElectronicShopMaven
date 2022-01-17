@@ -12,6 +12,23 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Buy Component</title>
+
+<style>
+
+body{
+    
+    background-image: url("electronic new.jpg");
+    background-repeat:no repeat;
+    background-size: cover;
+   
+    font-family: Cambria;
+}
+
+</style>
+
+
+
+
 </head>
 <body>
 <h1>Buy</h1>

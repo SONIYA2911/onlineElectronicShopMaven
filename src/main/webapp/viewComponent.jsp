@@ -20,14 +20,12 @@ border-collapse:collapse;
 }
 body{
     
-    background-image: url("component.jpg");
+    background-image: url("electronic new.jpg");
     background-repeat:no repeat;
     background-size: cover;
    
     font-family: Cambria;
 }
-
-
 
 </style>
 </head>
